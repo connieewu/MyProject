@@ -9,25 +9,151 @@
 <script>
 $(document).ready(
 	function(){
+		var num1 = 0;
+		var num2 = 0;
+		var total = 0;
 		
-		$("#calc").click(
+		var showNumber = function(){
+			$("#display").html("Your total is"+total+"!");
+			$("#display").animate(
+			{
+				"bottom":"100px"
+			}
+		);
+		}
+		
+		var getNumber = function(){
+			num1 = parseInt($("#num1").val());
+			num2 = parseInt($("#num2").val());
+		};
+		
+		var add = function(){
+				getNumber();
+				total = num1 + num2;
+		}
+		
+		var subtract = function(){
+				getNumber();
+				total = num1 - num2;
+		}
+		
+		var mult = function(){
+				getNumber();
+				total = num1 * num2;
+		}
+		
+		var divide = function(){
+				getNumber();
+				total = num1 / num2;
+		}
+		
+		$("#topleft").click(
 			function(){
-				var num1 = parseInt($("#num1").val());
-				var num2 = parseInt($("#num2").val());
-				var total = num1 + num2;
-				$("#display").html("<h1>"+total+"</h1>");
+				add();
+				showNumber();	
+			}
+		);
+		
+		$("#topright").click(
+			function(){
+				subtract();
+				showNumber();	
+			}
+		);
+		
+		$("#botleft").click(
+			function(){
+				mult();
+				showNumber();	
+			}
+		);
+		
+		$("#botright").click(
+			function(){
+				divide();
+				showNumber();	
 			}
 		);
 	}
 );
 </script>
+<style>
+#topleft{
+	position:fixed;
+	left:0;
+	top:0;
+	width: 50%;
+	height: 50%;
+	background:#F88;
+}
+#topright{
+	position:fixed;
+	right:0;
+	top:0;
+	width: 50%;
+	height: 50%;
+	background:#C44;
+}
+#botleft{
+	position:fixed;
+	left:0;
+	bottom:0;
+	width: 50%;
+	height: 50%;
+	background:#CF2F32;
+}
+#botright{
+	position:fixed;
+	right:0;
+	bottom:0;
+	width: 50%;
+	height: 50%;
+	background:#F4CFCF;
+}
 
+#numbers {
+	position:fixed;
+	top:45%;
+	left:25.5%;
+	z-index:1;	
+}
+
+#numbers input {
+	height:50px;
+	font-size:15pt;	
+}
+
+#display {
+	position:fixed;
+	bottom: -100px;
+	height: 100px;
+	left:0;
+	width:100%;
+	text-align:center;
+	font-size:28pt;	
+	z-index:1;
+	background-color:#FFF;
+}
+</style>
 
 <body>
+
+	<div id="numbers">
 	<input id="num1" type="text" placeholder="the 1st #" />
-    <button id="add">+</button>
     <input id="num2" type="text" placeholder="the 2nd #" />
-    <button id="calc">Calculate</button>
+    </div>
+    <div id="topleft">
+    </div>
+    
+    <div id="topright">
+    </div>
+    
+    <div id="botleft">
+    </div>
+    
+    <div id="botright">
+    </div>
+   
 	<div id="display">
     </div>
 </body>
